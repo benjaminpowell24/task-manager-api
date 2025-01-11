@@ -7,6 +7,7 @@ import connectDB from './db/connection.js'
 
 const app = express()
 
+app.use(express.static('./public'))
 app.use(express.json())
 app.use('/v1/tasks', tasks)
 
