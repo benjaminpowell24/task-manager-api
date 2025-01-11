@@ -1,15 +1,24 @@
 import Task from '../models/Task.js'
 
-const getAllTasks = (req, res) => {
+const getAllTasks = async (req, res) => {
   try {
-    res.status(200).json({ msg: 'All tasks' })
+    const tasks = await Task.find()
+    res.status(200).json({ sucess: true, data: tasks })
   } catch (err) {
     res.status(500).json({ msg: err })
   }
 }
 
-const getTask = (req, res) => {
+const getTask = async (req, res) => {
   try {
+    const taskId = req.params.id
+    const task = await Task.findById(taskId)
+
+    if (!task) {
+      return res.status(404).json({ msg: `No task with id: ${taskId}` })
+    }
+
+    return res.status(200).json({ success: true, data: task })
   } catch (err) {
     res.status(500).json({ msg: err })
   }
@@ -30,8 +39,19 @@ const createTask = async (req, res) => {
   }
 }
 
-const updateTask = (req, res) => {
+const updateTask = async (req, res) => {
   try {
+    const taskId = req.params.id
+    const task = await Task.findByIdAndUpdate(taskId, req.body, {
+      new: true,
+      runValidators: true,
+    })
+
+    if (!task) {
+      return res.status(404).json({ msg: `No task with id: ${taskId}` })
+    }
+
+    res.status(200).json({ success: true, data: task })
   } catch (err) {
     res.status(500).json({ msg: err })
   }
