@@ -9,7 +9,7 @@ const app = express()
 
 app.use(express.static('./public'))
 app.use(express.json())
-app.use('/v1/tasks', tasks)
+app.use('/api/v1/tasks', tasks)
 
 const connectionStr = process.env.MONGO_URI
 

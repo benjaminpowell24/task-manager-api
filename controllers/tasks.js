@@ -3,7 +3,7 @@ import Task from '../models/Task.js'
 const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find()
-    res.status(200).json({ sucess: true, data: tasks })
+    res.status(200).json({ success: true, data: tasks })
   } catch (err) {
     res.status(500).json({ msg: err })
   }
