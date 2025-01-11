@@ -1,9 +1,14 @@
-const express = require('express')
-require('dotenv').config()
+import express from 'express'
 
-const connectDB = require('./db/connection')
+import 'dotenv/config'
+import tasks from './routes/tasks.js'
+
+import connectDB from './db/connection.js'
 
 const app = express()
+
+app.use(express.json())
+app.use('/v1/tasks', tasks)
 
 const connectionStr = process.env.MONGO_URI
 

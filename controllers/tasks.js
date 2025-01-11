@@ -1,7 +1,8 @@
-const Task = require('../models/Task')
+import Task from '../models/Task.js'
 
 const getAllTasks = (req, res) => {
   try {
+    res.status(200).json({ msg: 'All tasks' })
   } catch (err) {
     res.status(500).json({ msg: err })
   }
@@ -43,4 +44,4 @@ const deleteTask = (req, res) => {
   }
 }
 
-module.exports = { getAllTasks, getTask, createTask, updateTask, deleteTask }
+export { getAllTasks, getTask, createTask, updateTask, deleteTask }
