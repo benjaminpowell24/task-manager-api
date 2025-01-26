@@ -16,12 +16,14 @@ app.use('/api/v1/tasks', tasks)
 app.use(notFound)
 app.use(errorHandler)
 
+const port = process.env.PORT || 4000
+
 const connectionStr = process.env.MONGO_URI
 
 const main = async () => {
   try {
     await connectDB(connectionStr)
-    app.listen(4000, () =>
+    app.listen(port, () =>
       console.log(`Connected to DB. Server listening on 4000`)
     )
   } catch (err) {
