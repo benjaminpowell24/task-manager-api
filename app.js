@@ -2,14 +2,16 @@ import express from 'express'
 
 import 'dotenv/config'
 import tasks from './routes/tasks.js'
-
 import connectDB from './db/connection.js'
+import notFound from './middleware/notFound.js'
 
 const app = express()
 
 app.use(express.static('./public'))
 app.use(express.json())
+
 app.use('/api/v1/tasks', tasks)
+app.use(notFound)
 
 const connectionStr = process.env.MONGO_URI
 
