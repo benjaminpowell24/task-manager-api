@@ -24,7 +24,7 @@ const main = async () => {
   try {
     await connectDB(connectionStr)
     app.listen(port, () =>
-      console.log(`Connected to DB. Server listening on 4000`)
+      console.log(`Connected to DB. Server listening on ${port}`)
     )
   } catch (err) {
     return console.log(err)
